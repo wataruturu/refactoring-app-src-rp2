@@ -13,7 +13,7 @@ import jp.co.sss.crud.db.DBController;
  * メニュー画面を表示する。
  *
  * @author System Shared
- *
+ *コミット、プッシュのテスト
  */
 public class MainSystem {
 	/**
