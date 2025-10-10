@@ -2,7 +2,6 @@ package jp.co.sss.crud.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -15,10 +14,9 @@ import jp.co.sss.crud.io.ConsoleWriter;
 import jp.co.sss.crud.util.ConstantSQL;
 
 public class EmployeeRegisterService {
-	public static void employeeRegistersService()
+	public static void employeeRegistersService(BufferedReader br)
 			throws ClassNotFoundException, SQLException, IOException, ParseException {
 		// 登録する値を入力
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		System.out.print("社員名:");
 		String empName = br.readLine();

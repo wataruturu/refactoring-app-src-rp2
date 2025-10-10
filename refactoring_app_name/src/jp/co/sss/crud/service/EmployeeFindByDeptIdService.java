@@ -2,7 +2,6 @@ package jp.co.sss.crud.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,11 +19,10 @@ public class EmployeeFindByDeptIdService {
 	 * @throws SQLException           DB処理でエラーが発生した場合に送出
 	 * @throws IOException            入力処理でエラーが発生した場合に送出
 	 */
-	public static void employeeFindByDeptIdService() throws IOException, ClassNotFoundException, SQLException {
+	public static void employeeFindByDeptIdService(BufferedReader br)
+			throws IOException, ClassNotFoundException, SQLException {
 		// 検索する部署IDを入力
 		System.out.print("部署ID(1:営業部、2:経理部、3:総務部)を入力してください:");
-
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		String deptId = br.readLine();
 

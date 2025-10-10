@@ -59,12 +59,12 @@ public class MainSystem {
 
 			case 3:
 				// 部署ID検索機能の呼び出し
-				EmployeeFindByDeptIdService.employeeFindByDeptIdService();
+				EmployeeFindByDeptIdService.employeeFindByDeptIdService(br);
 				break;
 
 			case 4:
 				//新規登録機能の呼び出し
-				EmployeeRegisterService.employeeRegistersService();
+				EmployeeRegisterService.employeeRegistersService(br);
 				break;
 
 			case 5:
