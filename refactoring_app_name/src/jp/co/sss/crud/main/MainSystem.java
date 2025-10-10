@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 import jp.co.sss.crud.io.ConsoleWriter;
+import jp.co.sss.crud.io.MenuNoReader;
 import jp.co.sss.crud.service.EmployeeAllFindService;
 import jp.co.sss.crud.service.EmployeeDeleteService;
 import jp.co.sss.crud.service.EmployeeFindByDeptIdService;
@@ -40,8 +41,8 @@ public class MainSystem {
 			ConsoleWriter.displayMainMenu();
 
 			// メニュー番号の入力
-			String menuNoStr = br.readLine();
-			menuNo = Integer.parseInt(menuNoStr);
+
+			menuNo = Integer.parseInt(MenuNoReader.menuNoReader(br));
 
 			// 機能の呼出
 			switch (menuNo) {
@@ -53,7 +54,7 @@ public class MainSystem {
 
 			case 2:
 				// 社員名検索機能の呼び出し
-				EmployeeFindByEmpNameService.employeeFindByEmpNameService();
+				EmployeeFindByEmpNameService.employeeFindByEmpNameService(br);
 				break;
 
 			case 3:

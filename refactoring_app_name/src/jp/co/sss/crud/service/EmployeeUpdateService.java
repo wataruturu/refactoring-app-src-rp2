@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import jp.co.sss.crud.db.DBManager;
+import jp.co.sss.crud.io.ConsoleWriter;
 import jp.co.sss.crud.util.ConstantSQL;
 
 public class EmployeeUpdateService {
@@ -64,7 +65,7 @@ public class EmployeeUpdateService {
 			// DBとの接続を切断
 			DBManager.close(connection);
 		}
-		System.out.println("社員情報を更新しました");
+		ConsoleWriter.displayEmployeeUpdateService();
 
 	}
 }

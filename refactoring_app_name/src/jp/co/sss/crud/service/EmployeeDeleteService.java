@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import jp.co.sss.crud.db.DBManager;
+import jp.co.sss.crud.io.ConsoleWriter;
 import jp.co.sss.crud.util.ConstantSQL;
 
 public class EmployeeDeleteService {
@@ -33,7 +34,7 @@ public class EmployeeDeleteService {
 			// SQL文の実行(失敗時は戻り値0)
 			preparedStatement.executeUpdate();
 
-			System.out.println("社員情報を削除しました");
+			ConsoleWriter.displayEmployeeDeleteService();
 
 		} catch (Exception e) {
 			e.printStackTrace();

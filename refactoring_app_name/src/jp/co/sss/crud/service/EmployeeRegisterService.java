@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import jp.co.sss.crud.db.DBManager;
+import jp.co.sss.crud.io.ConsoleWriter;
 import jp.co.sss.crud.util.ConstantSQL;
 
 public class EmployeeRegisterService {
@@ -49,7 +50,7 @@ public class EmployeeRegisterService {
 			preparedStatement.executeUpdate();
 
 			// 登録完了メッセージを出力
-			System.out.println("社員情報を登録しました");
+			ConsoleWriter.displayEmployeeRegistersService();
 		} finally {
 			DBManager.close(preparedStatement);
 			DBManager.close(connection);

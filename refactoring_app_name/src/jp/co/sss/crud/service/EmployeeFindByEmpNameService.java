@@ -2,13 +2,14 @@ package jp.co.sss.crud.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import jp.co.sss.crud.db.DBManager;
+import jp.co.sss.crud.io.ConsoleWriter;
+import jp.co.sss.crud.io.EmployeeNameReader;
 import jp.co.sss.crud.util.ConstantSQL;
 
 public class EmployeeFindByEmpNameService {
@@ -19,15 +20,14 @@ public class EmployeeFindByEmpNameService {
 	 * @throws SQLException           DB処理でエラーが発生した場合に送出
 	 * @throws IOException            入力処理でエラーが発生した場合に送出
 	 */
-	public static void employeeFindByEmpNameService() throws ClassNotFoundException, SQLException, IOException {
+	public static void employeeFindByEmpNameService(BufferedReader br)
+			throws ClassNotFoundException, SQLException, IOException {
 		// 社員名検索
 		System.out.print("社員名:");
 
-		// 検索機能の呼出
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
 		// 検索ワード
-		String searchWord = br.readLine();
+		EmployeeNameReader employeeName = new EmployeeNameReader(br);
+		String searchWord = employeeName.employeeNameReader();
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -49,43 +49,9 @@ public class EmployeeFindByEmpNameService {
 
 			// SQL文を実行
 			resultSet = preparedStatement.executeQuery();
-			if (!resultSet.isBeforeFirst()) {
-				System.out.println("該当者はいませんでした");
-				return;
-			}
 
-			System.out.println("社員ID\t社員名\t性別\t生年月日\t部署名");
-			while (resultSet.next()) {
-				System.out.print(resultSet.getString("emp_id"));
-				System.out.print("\t");
-
-				System.out.print(resultSet.getString("emp_name"));
-				System.out.print("\t");
-
-				String genderString = resultSet.getString("gender");
-				int gender = Integer.parseInt(genderString);
-				if (gender == 0) {
-					System.out.print("回答なし");
-				} else if (gender == 1) {
-					System.out.print("男性");
-
-				} else if (gender == 2) {
-					System.out.print("女性");
-
-				} else if (gender == 9) {
-					System.out.print("その他");
-
-				}
-
-				System.out.print("\t");
-				System.out.print(resultSet.getString("birthday"));
-				System.out.print("\t");
-
-				System.out.println(resultSet.getString("dept_name"));
-			}
-
-			System.out.println("");
-
+			//レコード出力
+			ConsoleWriter.displayEmployeeFindByEmpNameService(resultSet);
 		} finally {
 			// クローズ処理
 			DBManager.close(resultSet);
