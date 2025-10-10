@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.text.ParseException;
 
+import jp.co.sss.crud.io.ConsoleWriter;
 import jp.co.sss.crud.service.EmployeeAllFindService;
 import jp.co.sss.crud.service.EmployeeDeleteService;
 import jp.co.sss.crud.service.EmployeeFindByDeptIdService;
@@ -36,15 +37,7 @@ public class MainSystem {
 
 		do {
 			// メニューの表示
-			System.out.println("=== 社員管理システム ===");
-			System.out.println("1.全件表示");
-			System.out.println("2.社員名検索");
-			System.out.println("3.部署ID検索");
-			System.out.println("4.新規登録");
-			System.out.println("5.更新");
-			System.out.println("6.削除");
-			System.out.println("7.終了");
-			System.out.print("メニュー番号を入力してください：");
+			ConsoleWriter.displayMainMenu();
 
 			// メニュー番号の入力
 			String menuNoStr = br.readLine();
@@ -86,6 +79,7 @@ public class MainSystem {
 
 			}
 		} while (menuNo != 7);
-		System.out.println("システムを終了します。");
+		//終了時の文章を表示
+		ConsoleWriter.displayEndText();
 	}
 }

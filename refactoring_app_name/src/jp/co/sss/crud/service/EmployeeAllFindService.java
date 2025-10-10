@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import jp.co.sss.crud.db.DBManager;
+import jp.co.sss.crud.io.ConsoleWriter;
 import jp.co.sss.crud.util.ConstantSQL;
 
 public class EmployeeAllFindService extends IEmployeeService {
@@ -37,30 +38,8 @@ public class EmployeeAllFindService extends IEmployeeService {
 			}
 
 			// レコードを出力
-			System.out.println("社員ID\t社員名\t性別\t生年月日\t部署名");
-			while (resultSet.next()) {
-				System.out.print(resultSet.getString("emp_id") + "\t");
-				System.out.print(resultSet.getString("emp_name") + "\t");
+			ConsoleWriter.displayEmployeeAllFind(resultSet);
 
-				int gender = Integer.parseInt(resultSet.getString("gender"));
-				if (gender == 0) {
-					System.out.print("回答なし" + "\t");
-				} else if (gender == 1) {
-					System.out.print("男性" + "\t");
-
-				} else if (gender == 2) {
-					System.out.print("女性" + "\t");
-
-				} else if (gender == 9) {
-					System.out.print("その他" + "\t");
-
-				}
-
-				System.out.print(resultSet.getString("birthday") + "\t");
-				System.out.println(resultSet.getString("dept_name"));
-			}
-
-			System.out.println("");
 		} finally {
 			// ResultSetをクローズ
 			DBManager.close(resultSet);
